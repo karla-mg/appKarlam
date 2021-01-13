@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo se usa en el proceso de publicación y empaquetado del proyecto web. Para personalizar el comportamiento de este proceso,
+edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 para obtener más información. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQIyoDU40FEKo/0iM6NMaCwAAAAACAAAAAAAQZgAAAAEAACAAAAD8wXwDLi3c7AwZSaIzrMYu6NmFOW62sF0YQR+66kSG4AAAAAAOgAAAAAIAACAAAABqN22nxmxb+qHeTaY757u0wRiAQuARRwO9zstnbUIGfSAAAAB1WE+Wv2GRIXhsWfv10DCB9KNtkEjKRu9lDd4v28CgwEAAAAA8Etkr/QJ+jU9HFnd4Ccf+Gv1ApVqKCyuFvqQHHyIbLobtzb+6ur3lbXIgJP2HviRz7gqYRywLS2+tPsZ66Kgd</EncryptedPassword>
+    <_PublishTargetUrl>ftp://66.85.73.147/www.appKarlaM.somee.com/http://www.appKarlaM.somee.com</_PublishTargetUrl>
+  </PropertyGroup>
+</Project>
