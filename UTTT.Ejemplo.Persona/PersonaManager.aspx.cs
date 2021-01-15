@@ -60,6 +60,7 @@ namespace UTTT.Ejemplo.Persona
                     CatSexo catTemp = new CatSexo();
                     catTemp.id = -1;
                     catTemp.strValor = "Seleccionar";
+                    
                     lista.Insert(0, catTemp);
                     this.ddlSexo.DataTextField = "strValor";
                     this.ddlSexo.DataValueField = "id";
@@ -94,12 +95,14 @@ namespace UTTT.Ejemplo.Persona
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 DataContext dcGuardar = new DcGeneralkDataContext();
                 UTTT.Ejemplo.Linq.Data.Entity.Persona persona = new Linq.Data.Entity.Persona();
                 if (this.idPersona == 0)
                 {
+                    DateTime fechaNac = this.dteCalendario.SelectedDate.Date;
                     persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
                     persona.strNombre = this.txtNombre.Text.Trim();
                     persona.strAMaterno = this.txtAMaterno.Text.Trim();
@@ -128,6 +131,7 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessageException(_e.Message);
             }
+            
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -140,6 +144,7 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessage("Ha ocurrido un error inesperado");
             }
+
         }
 
         protected void ddlSexo_SelectedIndexChanged(object sender, EventArgs e)

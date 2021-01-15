@@ -451,6 +451,8 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 		
 		private int _idCatSexo;
 		
+		private System.Nullable<System.DateTime> _dteFechaNac;
+		
 		private EntitySet<Direccion> _Direccion;
 		
 		private EntityRef<CatSexo> _CatSexo;
@@ -471,6 +473,8 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
     partial void OnstrAMaternoChanged();
     partial void OnidCatSexoChanging(int value);
     partial void OnidCatSexoChanged();
+    partial void OndteFechaNacChanging(System.Nullable<System.DateTime> value);
+    partial void OndteFechaNacChanged();
     #endregion
 		
 		public Persona()
@@ -600,6 +604,26 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 					this._idCatSexo = value;
 					this.SendPropertyChanged("idCatSexo");
 					this.OnidCatSexoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dteFechaNac", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dteFechaNac
+		{
+			get
+			{
+				return this._dteFechaNac;
+			}
+			set
+			{
+				if ((this._dteFechaNac != value))
+				{
+					this.OndteFechaNacChanging(value);
+					this.SendPropertyChanging();
+					this._dteFechaNac = value;
+					this.SendPropertyChanged("dteFechaNac");
+					this.OndteFechaNacChanged();
 				}
 			}
 		}
