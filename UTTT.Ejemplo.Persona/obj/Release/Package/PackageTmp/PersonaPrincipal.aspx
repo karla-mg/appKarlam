@@ -14,7 +14,7 @@
 
 
     <p>
-        Normbre:&nbsp;&nbsp;&nbsp;
+        Nombre:&nbsp;&nbsp;&nbsp;
 
         <asp:TextBox ID="txtNombre" runat="server" Width="174px" 
             ViewStateMode="Disabled"></asp:TextBox>
@@ -23,6 +23,7 @@
             onclick="btnBuscar_Click" ViewStateMode="Disabled" />
         &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" 
+          
             onclick="btnAgregar_Click" ViewStateMode="Disabled" />
     </p>
     </div>
