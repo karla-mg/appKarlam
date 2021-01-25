@@ -8,13 +8,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/UTTT.Ejemplo.Linq.Data.dll">
-      <publishTime>01/12/2021 16:52:48</publishTime>
+      <publishTime>01/20/2021 20:02:06</publishTime>
     </File>
     <File Include="bin/UTTT.Ejemplo.Linq.Data.dll.config">
-      <publishTime>01/12/2021 16:44:47</publishTime>
+      <publishTime>01/12/2021 17:07:59</publishTime>
     </File>
     <File Include="bin/UTTT.Ejemplo.Linq.Data.pdb">
-      <publishTime>01/12/2021 16:52:48</publishTime>
+      <publishTime>01/20/2021 20:02:06</publishTime>
     </File>
     <File Include="bin/UTTT.Ejemplo.Persona.Control.dll">
       <publishTime>01/07/2021 15:52:08</publishTime>
@@ -29,10 +29,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/07/2021 15:52:07</publishTime>
     </File>
     <File Include="bin/UTTT.Ejemplo.Persona.dll">
-      <publishTime>01/12/2021 17:08:02</publishTime>
+      <publishTime>01/20/2021 20:09:32</publishTime>
     </File>
     <File Include="bin/UTTT.Ejemplo.Persona.pdb">
-      <publishTime>01/12/2021 17:08:02</publishTime>
+      <publishTime>01/20/2021 20:09:32</publishTime>
     </File>
     <File Include="controlformato.css">
       <publishTime>04/26/2016 13:33:12</publishTime>
@@ -62,7 +62,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/26/2016 13:33:12</publishTime>
     </File>
     <File Include="javaScripFile.js">
-      <publishTime>04/26/2016 13:33:12</publishTime>
+      <publishTime>01/20/2021 20:02:06</publishTime>
     </File>
     <File Include="javaScripPage.aspx">
       <publishTime>04/26/2016 13:33:12</publishTime>
@@ -71,10 +71,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/26/2016 13:33:12</publishTime>
     </File>
     <File Include="PersonaManager.aspx">
-      <publishTime>04/26/2016 13:33:12</publishTime>
+      <publishTime>01/20/2021 20:02:06</publishTime>
     </File>
     <File Include="PersonaPrincipal.aspx">
-      <publishTime>04/26/2016 13:33:12</publishTime>
+      <publishTime>01/20/2021 20:02:06</publishTime>
     </File>
     <File Include="Scripts/jquery-1.4.1-vsdoc.js">
       <publishTime>04/26/2016 13:33:12</publishTime>
@@ -85,8 +85,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Scripts/jquery-1.4.1.min.js">
       <publishTime>04/26/2016 13:33:12</publishTime>
     </File>
+    <File Include="validFuctions.js">
+      <publishTime>01/20/2021 20:02:07</publishTime>
+    </File>
     <File Include="Web.config">
-      <publishTime>01/12/2021 17:08:05</publishTime>
+      <publishTime>01/20/2021 20:09:34</publishTime>
     </File>
   </ItemGroup>
 </Project>
