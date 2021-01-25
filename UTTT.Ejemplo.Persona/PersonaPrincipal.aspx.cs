@@ -51,6 +51,8 @@ namespace UTTT.Ejemplo.Persona
             }
         }
 
+       
+
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -171,7 +173,7 @@ namespace UTTT.Ejemplo.Persona
                     c => c.id == _idPersona);
                 dcDelete.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().DeleteOnSubmit(persona);
                 dcDelete.SubmitChanges();
-                this.showMessage("El registro se agrego correctamente.");
+                this.showMessage("El registro se eliminó correctamente.");
                 this.DataSourcePersona.RaiseViewChanged();                
             }
             catch (Exception _e)

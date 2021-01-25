@@ -453,6 +453,12 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 		
 		private System.Nullable<System.DateTime> _dteFechaNac;
 		
+		private string _strCorreo;
+		
+		private string _strRFC;
+		
+		private string _strCodigoPostal;
+		
 		private EntitySet<Direccion> _Direccion;
 		
 		private EntityRef<CatSexo> _CatSexo;
@@ -475,6 +481,12 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
     partial void OnidCatSexoChanged();
     partial void OndteFechaNacChanging(System.Nullable<System.DateTime> value);
     partial void OndteFechaNacChanged();
+    partial void OnstrCorreoChanging(string value);
+    partial void OnstrCorreoChanged();
+    partial void OnstrRFCChanging(string value);
+    partial void OnstrRFCChanged();
+    partial void OnstrCodigoPostalChanging(string value);
+    partial void OnstrCodigoPostalChanged();
     #endregion
 		
 		public Persona()
@@ -624,6 +636,66 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 					this._dteFechaNac = value;
 					this.SendPropertyChanged("dteFechaNac");
 					this.OndteFechaNacChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strCorreo", DbType="VarChar(50)")]
+		public string strCorreo
+		{
+			get
+			{
+				return this._strCorreo;
+			}
+			set
+			{
+				if ((this._strCorreo != value))
+				{
+					this.OnstrCorreoChanging(value);
+					this.SendPropertyChanging();
+					this._strCorreo = value;
+					this.SendPropertyChanged("strCorreo");
+					this.OnstrCorreoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strRFC", DbType="VarChar(13)")]
+		public string strRFC
+		{
+			get
+			{
+				return this._strRFC;
+			}
+			set
+			{
+				if ((this._strRFC != value))
+				{
+					this.OnstrRFCChanging(value);
+					this.SendPropertyChanging();
+					this._strRFC = value;
+					this.SendPropertyChanged("strRFC");
+					this.OnstrRFCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strCodigoPostal", DbType="VarChar(50)")]
+		public string strCodigoPostal
+		{
+			get
+			{
+				return this._strCodigoPostal;
+			}
+			set
+			{
+				if ((this._strCodigoPostal != value))
+				{
+					this.OnstrCodigoPostalChanging(value);
+					this.SendPropertyChanging();
+					this._strCodigoPostal = value;
+					this.SendPropertyChanged("strCodigoPostal");
+					this.OnstrCodigoPostalChanged();
 				}
 			}
 		}

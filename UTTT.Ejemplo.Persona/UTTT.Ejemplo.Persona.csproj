@@ -81,10 +81,12 @@
     <Content Include="direccion.aspx" />
     <Content Include="DireccionExtraManager.aspx" />
     <Content Include="DireccionManager.aspx" />
+    <Content Include="ErrorPage.aspx" />
     <Content Include="Images\delrecord_16x16.png" />
     <Content Include="Images\editrecord_16x16.png" />
     <Content Include="Images\Pixir-1-1-300x181.png" />
     <Content Include="Images\printrecord_16x16.png" />
+    <Content Include="Images\unnamed.png" />
     <Content Include="javaScripFile.js" />
     <Content Include="javaScripPage.aspx" />
     <Content Include="PersonaManager.aspx" />
@@ -92,6 +94,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\validaciones.js" />
     <Content Include="validFuctions.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -132,6 +135,13 @@
     <Compile Include="DireccionManager.aspx.designer.cs">
       <DependentUpon>DireccionManager.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="javaScripPage.aspx.cs">
       <DependentUpon>javaScripPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -139,6 +149,7 @@
     <Compile Include="javaScripPage.aspx.designer.cs">
       <DependentUpon>javaScripPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="log.cs" />
     <Compile Include="paginaMaster.Master.cs">
       <DependentUpon>paginaMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

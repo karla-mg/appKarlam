@@ -65,6 +65,11 @@ namespace UTTT.Ejemplo.Persona
             }
         }
 
+        private void showMessage(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         protected void LinqDataSourceDireccion_Selecting(object sender, LinqDataSourceSelectEventArgs e)
         {
             try
