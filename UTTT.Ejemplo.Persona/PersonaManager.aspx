@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PersonaManager.aspx.cs" Inherits="UTTT.Ejemplo.Persona.PersonaManager" debug=false%>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,6 +16,7 @@
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))
                 return true;
+
 
             return false;
         }
@@ -34,10 +37,10 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server" onsubmit="return camposValid()" style="background-color: #C0C0C0">
-    <div style="font-family: Arial; font-size: medium; font-weight: bold">
+    <form id="form1" runat="server" onsubmit="return camposValid()" style="background-color: #CC99FF">
+    <div style="font-family: century; font-size: x-large; font-weight: bold">
     
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Persona</div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Persona</div>
 
         <div>
         
@@ -50,7 +53,7 @@
         <div>
 
         </div>
-        <div style="background-color: #C0C0C0">
+        <div style="background-color: #CC99FF">
 
         </div>
             <div>
@@ -101,7 +104,7 @@
             <asp:Label id="result5" runat="server" Font-Bold="True" ForeColor="#6666FF"></asp:Label>
         
         </div>
-    <div style="background-color: #C0C0C0"> 
+    <div style="background-color: #CC99FF"> 
     
     &nbsp;<div style="font-family: 'Century Gothic'; font-weight: bold">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label2" runat="server" Text="E-Mail:"></asp:Label>
@@ -123,7 +126,7 @@
             <div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Label ID="Label4" runat="server" Text="RFC:"></asp:Label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="txtRFC" runat="server" MaxLength="15" minlength="13" BackColor="#6699FF"></asp:TextBox>
+                <asp:TextBox ID="txtRFC" runat="server" MaxLength="14" minlength="13" BackColor="#6699FF"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvRFC" runat="server" ControlToValidate="txtRFC" EnableClientScript="False" ErrorMessage="RFC Obligatorio"></asp:RequiredFieldValidator>
                <asp:Label id="result8" runat="server" Font-Bold="True" ForeColor="#6666FF"></asp:Label>
             </div>
@@ -133,9 +136,21 @@
         <asp:Label ID="Label1" runat="server" Text="Fecha de Nacimiento:"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label id="result2" runat="server" Font-Bold="True" ForeColor="#6666FF"></asp:Label>
+            <br />
         </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div align="center" style="background-color: #C0C0C0">
-        <asp:Calendar ID="dteCalendario"   runat="server" BackColor="White" BorderColor="Black" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="192px" Width="248px" CaptionAlign="Top" NextPrevFormat="ShortMonth" BorderStyle="Solid" CellSpacing="1" SelectionMode="DayWeekMonth" OnSelectionChanged="dteCalendario_SelectionChanged">
+          <asp:ScriptManager ID="toolScriptManageer1" runat="server"></asp:ScriptManager>  
+                <div>  
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    <asp:TextBox ID="txtDOB" runat="server" OnTextChanged="txtDOB_TextChanged" BackColor="#6699FF" Font-Bold="False"></asp:TextBox>  
+                    <ajaxToolkit:CalendarExtender ID="Calendar1" PopupButtonID="imgPopup" runat="server" TargetControlID="txtDOB" Format="dd/MM/yyyy"> </ajaxToolkit:CalendarExtender>  
+                    <asp:RequiredFieldValidator ID="rfvFecNac" runat="server" ControlToValidate="txtDOB" EnableClientScript="False" ErrorMessage="Fecha Nacimiento Obligatoria" Font-Bold="True"></asp:RequiredFieldValidator>
+&nbsp;&nbsp;&nbsp;
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtDOB" EnableClientScript="False" ErrorMessage="Fecha Inválida!" Font-Bold="True" ValidationExpression="^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$"></asp:RegularExpressionValidator>
+                </div>
+        
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--<div align="center" style="background-color: #C0C0C0">
+        <asp:Calendar ID="dteCalendario"   runat="server" BackColor="White" BorderColor="Black" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="192px" Width="248px" CaptionAlign="Top" NextPrevFormat="ShortMonth" BorderStyle="Solid" CellSpacing="1" OnSelectionChanged="dteCalendario_SelectionChanged">
             <DayHeaderStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" Height="8pt" />
             <DayStyle BackColor="#CCCCCC" />
             <NextPrevStyle Font-Size="8pt" ForeColor="White" Font-Bold="True" />
@@ -144,10 +159,11 @@
             <TitleStyle BackColor="#99CCFF" Font-Bold="True" Font-Size="12pt" ForeColor="Black" Height="12pt" BorderStyle="Solid" />
             <TodayDayStyle BackColor="#999999" ForeColor="White" />
         </asp:Calendar>
-                    </div>
+                    </div>--%>
+        
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 822px" align="center">
-     
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="background-color: #C0C0C0">
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="background-color: #CC99FF">
                 <asp:Label ID="lblMensaje" runat="server" Font-Bold="True" Font-Size="X-Large" ForeColor="#FF3300" Font-Overline="False"></asp:Label>
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
@@ -155,10 +171,10 @@
      
         <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" 
             OnClick="btnAceptar_Click"
-            ViewStateMode="Disabled" />
+            ViewStateMode="Disabled" BackColor="#66CCFF" Font-Bold="True" />
         &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" 
-            onclick="btnCancelar_Click" ViewStateMode="Disabled" />
+            onclick="btnCancelar_Click" ViewStateMode="Disabled" BackColor="#66CCFF" Font-Bold="True" />
     
     </div>
     

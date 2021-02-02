@@ -1,17 +1,11 @@
-﻿function myFunction() {
-    document.getElementById("demo").innerHTML = "My First JavaScript Function";
-}
+﻿function camposValid() {
 
-
-
-function camposValid() {
-    
-    var sexo,nombre,clave, aPaterno, aMaterno; 
+    var sexo, nombre, clave, aPaterno, aMaterno;
     sexo = document.getElementById("ddlSexo").value;
     clave = document.getElementById("txtClaveUnica").value;
     nombre = document.getElementById("txtNombre").value;
     aPaterno = document.getElementById("txtAPaterno").value;
-    aMaterno = document.getElementById("txtAMaterno").value; 
+    aMaterno = document.getElementById("txtAMaterno").value;
 
     var fields = [
         "txtClaveUnica"];
@@ -28,8 +22,8 @@ function camposValid() {
         return false;
     }
 
-    if (clave=='') {
-        alert("Agregue Clave Unica");
+    if (clave == '') {
+        document.getElementById("result1").innerHTML = "Ingresar clave Unica";
         return false;
     }
     if (fields == '') {
@@ -62,31 +56,26 @@ function camposValid() {
         nombreM.onkeyup = validateMinLength(e);
         return false;
     }
-if (nombre == '') {
-    alert("Agregue un nombre");
-
-
-
-    return false;
-}
+    if (nombre == '') {
+        document.getElementById("result3").innerHTML = "Agrega Tu Nombre Completo";
+        return false;
+    }
 
     if (aPaterno == '') {
-        alert("Agregue el Apellido Paterno");
+        document.getElementById("result4").innerHTML = "Agregue el Apellido Paterno";
         return false;
     }
     if (aMaterno == '') {
-        alert("Agregue Apellido Materno");
+        document.getElementById("result5").innerHTML = "Agregue Apellido Materno";
+
         return false;
     }
-    if (sexo == 0) {
-        alert("selecciona genero");
-        return false;
-    }
-
-
-    return true;   
-
-
-
     
+
+
+    return true;
+
+
+
+
 }  
