@@ -120,16 +120,16 @@ namespace UTTT.Ejemplo.Persona
 
             try
             {
-
+                 
                 DateTime fecNac =DateTime.Parse(this.txtDOB.Text.Trim());
                 DateTime fechaHoy = DateTime.Today;
                 int edad = fechaHoy.Year - fecNac.Year;
                 if (fechaHoy < fecNac.AddYears(edad)) edad--;
-
-
+              
                 if (edad < 18)
                 {
-                    this.showMessage("Tú edad no está permitida para registrarte!!");
+                    lblMensaje.Text = "Tú edad no está permitida para registrarte!!";
+                    //this.showMessage("Tú edad no está permitida para registrarte!!");
                 }
                 else
                 {
@@ -448,12 +448,12 @@ namespace UTTT.Ejemplo.Persona
             }
             if (_persona.strRFC.Length > 14)
             {
-                _mensaje = " Los caracteres del RFC., rebasan los 14 establecidos";
+                _mensaje = "Los caracteres del RFC son mas de los establecidos";
                 return false;
             }
             if (_persona.strRFC.Length < 13)
             {
-                _mensaje = " Los caracteres del RFC., no es correcto establecidos";
+                _mensaje = " Los caracteres del RFC minímo son 13";
                 return false;
             }
             bool resultadorf = Regex.IsMatch(_persona.strRFC, @"^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$");
@@ -489,6 +489,11 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = mensajefuncion;
                 return false;
             }
+            if (valida.sqlInyectionValida(this.txtAMaterno.Text.Trim(), ref mensajefuncion, "A. Materno", ref this.txtAMaterno))
+            {
+                _mensaje = mensajefuncion;
+                return false;
+            }
             if (valida.sqlInyectionValida(this.txtCorreo.Text.Trim(), ref mensajefuncion, "Correo", ref this.txtCorreo))
             {
                 _mensaje = mensajefuncion;
@@ -500,6 +505,11 @@ namespace UTTT.Ejemplo.Persona
                 return false;
             }
             if (valida.sqlInyectionValida(this.txtRFC.Text.Trim(), ref mensajefuncion, "RFC", ref this.txtRFC))
+            {
+                _mensaje = mensajefuncion;
+                return false;
+            }
+            if (valida.sqlInyectionValida(this.txtDOB.Text.Trim(), ref mensajefuncion, "Fecha de Nacimiento", ref this.txtDOB))
             {
                 _mensaje = mensajefuncion;
                 return false;
@@ -547,7 +557,11 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = mensajefuncion;
                 return false;
             }
-
+            if (valida.htmlInyectionValida(this.txtDOB.Text.Trim(), ref mensajefuncion, "Fecha de Nacimiento", ref this.txtDOB))
+            {
+                _mensaje = mensajefuncion;
+                return false;
+            }
 
 
 

@@ -191,6 +191,7 @@
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Properties\PublishProfiles\karla.pubxml" />
     <None Include="Properties\PublishProfiles\version3.pubxml" />
+    <None Include="Properties\PublishProfiles\versionFinal.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

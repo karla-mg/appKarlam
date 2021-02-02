@@ -17,32 +17,32 @@ function camposValid() {
 
 
 if (clave == '') {
-        document.getElementById("result1").innerHTML = "Ingresar clave Unica";
+    document.getElementById("lblMensaje").innerHTML = "Ingresar clave Unica";
         return false;
     }
     
     
     if (nombre == '') {
-        document.getElementById("result3").innerHTML = "Agrega Tu Nombre Completo";
+        document.getElementById("lblMensaje").innerHTML = "Agrega Tu Nombre Completo";
         return false;
     }
 
     if (aPaterno == '') {
-        document.getElementById("result4").innerHTML = "Agregue el Apellido Paterno";
+        document.getElementById("lblMensaje").innerHTML = "Agregue el Apellido Paterno";
         return false;
     }
 if (aMaterno == '') {
-    document.getElementById("result5").innerHTML = "Agregue Apellido Materno";
+    document.getElementById("lblMensaje").innerHTML = "Agregue Apellido Materno";
     return false;
     }
 
     if (correo == '') {
-        document.getElementById("result6").innerHTML = "Agregue E-Mail";
+        document.getElementById("lblMensaje").innerHTML = "Agregue E-Mail";
         return false;
     }
 
     if (cp == '') {
-        document.getElementById("result7").innerHTML = "Agregue Código Postal";
+        document.getElementById("lblMensaje").innerHTML = "Agregue Código Postal";
         return false;
     }
     if (rfc == '') {
