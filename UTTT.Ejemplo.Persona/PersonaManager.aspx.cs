@@ -78,10 +78,12 @@ namespace UTTT.Ejemplo.Persona
                     if (this.idPersona == 0)
                     {
                         this.lblAccion.Text = "Agregar";
-                        Calendar1.EndDate = DateTime.Now;
-                        DateTime tiempo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-                        //this.Calendar1.TodaysDate = tiempo;
-                        this.Calendar1.SelectedDate = tiempo;
+                      
+                        //  Calendar1. = DateTime.Now;
+                        DateTime time = new DateTime((DateTime.Now.Year)-21, DateTime.Now.Month, DateTime.Now.Day);
+                        this.Calendar1.TodaysDate = time;
+                        this.Calendar1.SelectedDate = time;
+              
                     }
                     else
                     {
@@ -95,7 +97,7 @@ namespace UTTT.Ejemplo.Persona
                         DateTime? fechaNacimiento = this.baseEntity.dteFechaNac;
                         if (fechaNacimiento != null)
                         {
-                            //this.Calendar1. = (DateTime)fechaNacimiento;
+                            this.Calendar1.TodaysDate = (DateTime)fechaNacimiento;
                             this.Calendar1.SelectedDate = (DateTime)fechaNacimiento;
                         }
                         this.txtCorreo.Text = this.baseEntity.strCorreo;
@@ -116,23 +118,27 @@ namespace UTTT.Ejemplo.Persona
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-
-
+         
             try
             {
-                 
-                DateTime fecNac =DateTime.Parse(this.txtDOB.Text.Trim());
-                DateTime fechaHoy = DateTime.Today;
-                int edad = fechaHoy.Year - fecNac.Year;
-                if (fechaHoy < fecNac.AddYears(edad)) edad--;
-              
-                if (edad < 18)
-                {
-                    lblMensaje.Text = "Tú edad no está permitida para registrarte!!";
-                    //this.showMessage("Tú edad no está permitida para registrarte!!");
-                }
+                
+
+                DateTime fecNac = this.Calendar1.SelectedDate.Date;
+                    DateTime fechaHoy = DateTime.Today;
+                    int edad = fechaHoy.Year - fecNac.Year;
+                    if (fechaHoy < fecNac.AddYears(edad)) edad--;
+
+
+                    if (edad < 18)
+                    {
+                        lblMensaje.Text = "Tú edad no está permitida para registrarte!!";
+                       
+
+                    }
+                
                 else
                 {
+                 
 
                     if (!Page.IsValid)
                     {
@@ -144,7 +150,7 @@ namespace UTTT.Ejemplo.Persona
                     UTTT.Ejemplo.Linq.Data.Entity.Persona persona = new Linq.Data.Entity.Persona();
                     if (this.idPersona == 0)
                     {
-
+                        
 
                         persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
                         persona.strNombre = this.txtNombre.Text.Trim();
@@ -155,9 +161,9 @@ namespace UTTT.Ejemplo.Persona
                         persona.strCorreo = this.txtCorreo.Text.Trim();
                         persona.strCodigoPostal = this.txtCP.Text.Trim();
                         persona.strRFC = this.txtRFC.Text.Trim();
-                        persona.dteFechaNac = DateTime.Parse(this.txtDOB.Text);
-                        //DateTime fechaNacimiento = this.dteCalendario.SelectedDate.Date;
-                        //persona.dteFechaNac = fechaNacimiento;
+                      //  persona.dteFechaNac = DateTime.Parse(this.txtDOB.Text.Trim());
+                        DateTime fechaNacimiento = this.Calendar1.SelectedDate.Date;
+                        persona.dteFechaNac = fechaNacimiento;
 
 
                         //persona.strClaveUnica = !this.txtClaveUnica.Text.Equals(String.Empty) ?
@@ -202,7 +208,27 @@ namespace UTTT.Ejemplo.Persona
                         persona.strCorreo = this.txtCorreo.Text.Trim();
                         persona.strCodigoPostal = this.txtCP.Text.Trim();
                         persona.strRFC = this.txtRFC.Text.Trim();
-                        persona.dteFechaNac =DateTime.Parse(this.txtDOB.Text);
+                        persona.dteFechaNac =Convert.ToDateTime(this.Calendar1.SelectedDate.Date);
+                        String mensaje = String.Empty;
+
+                        if (!this.validacion(persona, ref mensaje))
+                        {
+                            this.lblMensaje.Text = mensaje;
+                            this.lblMensaje.Visible = true;
+                            return;
+                        }
+                        if (!this.validacionSQL(ref mensaje))
+                        {
+                            this.lblMensaje.Text = mensaje;
+                            this.lblMensaje.Visible = true;
+                            return;
+                        }
+                        if (!this.validacionHTML(ref mensaje))
+                        {
+                            this.lblMensaje.Text = mensaje;
+                            this.lblMensaje.Visible = true;
+                            return;
+                        }
                         dcGuardar.SubmitChanges();
                         this.showMessage("El registro se edito correctamente.");
                         this.Response.Redirect("~/PersonaPrincipal.aspx", false);
@@ -313,11 +339,11 @@ namespace UTTT.Ejemplo.Persona
 
         public bool validacion(UTTT.Ejemplo.Linq.Data.Entity.Persona _persona, ref String _mensaje)
         {
-            if (_persona.dteFechaNac.Equals(String.Empty))
-            {
-                _mensaje = "Fecha de Nacimiento Vacía";
-                return false;
-            }
+            //if (_persona.dteFechaNac.Equals(String.Empty))
+            //{
+            //    _mensaje = "Fecha de Nacimiento Vacía";
+            //    return false;
+            //}
             if (_persona.idCatSexo==-1)
             {
                 _mensaje = "Seleccione Campo 'Sexo' ";
@@ -354,7 +380,7 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = "Nombre esta vacío";
                 return false;
             }
-            bool resultado = Regex.IsMatch(_persona.strNombre, @"^[a-zA-Z\s]+$");
+            bool resultado = Regex.IsMatch(_persona.strNombre, @"^[a-zA-Z-ZÀ-ÿ\u00f1\u00d1\s]+$");
             if (!resultado)
             {
                 _mensaje = " Los caracteres del Nombre deben ser letras";
@@ -378,7 +404,7 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = "A.Paterno esta vacío";
                 return false;
             }
-            bool resultadoap = Regex.IsMatch(_persona.strAPaterno, @"^[a-zA-Z]+$");
+            bool resultadoap = Regex.IsMatch(_persona.strAPaterno, @"^[a-zA-Z-ZÀ-ÿ\u00f1\u00d1]+$");
             if (!resultadoap)
             {
                 _mensaje = " Los caracteres del A.Paterno deben ser letras";
@@ -400,7 +426,7 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = "A.Materno esta vacío";
                 return false;
             }
-            bool resultadoaM = Regex.IsMatch(_persona.strAMaterno, @"^[a-zA-Z]+$");
+            bool resultadoaM = Regex.IsMatch(_persona.strAMaterno, @"^[a-zA-Z-ZÀ-ÿ\u00f1\u00d1]+$");
             if (!resultadoaM)
             {
                 _mensaje = " Los caracteres del A.Materno deben ser letras";
@@ -462,13 +488,15 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = " Los caracteres del RFC no son correctos";
                 return false;
             }
-         
 
+           
 
 
             return true;
         }
-        public bool validacionSQL(ref String _mensaje)
+     
+
+            public bool validacionSQL(ref String _mensaje)
         {
             CtrlValidaInyeccion valida = new CtrlValidaInyeccion();
             string mensajefuncion = string.Empty;
@@ -509,11 +537,11 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = mensajefuncion;
                 return false;
             }
-            if (valida.sqlInyectionValida(this.txtDOB.Text.Trim(), ref mensajefuncion, "Fecha de Nacimiento", ref this.txtDOB))
-            {
-                _mensaje = mensajefuncion;
-                return false;
-            }
+            //if (valida.sqlInyectionValida(this.txtDOB.Text.Trim(), ref mensajefuncion, "Fecha de Nacimiento", ref this.txtDOB))
+            //{
+            //    _mensaje = mensajefuncion;
+            //    return false;
+            //}
 
             return true;
         }
@@ -557,17 +585,18 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = mensajefuncion;
                 return false;
             }
-            if (valida.htmlInyectionValida(this.txtDOB.Text.Trim(), ref mensajefuncion, "Fecha de Nacimiento", ref this.txtDOB))
-            {
-                _mensaje = mensajefuncion;
-                return false;
-            }
-
+            //if (valida.htmlInyectionValida(this.txtDOB.Text.Trim(), ref mensajefuncion, "Fecha de Nacimiento", ref this.txtDOB))
+            //{
+            //    _mensaje = mensajefuncion;
+            //    return false;
+            //}
+          
 
 
             return true;
         }
-     
+       
+
         #endregion
 
         protected void dteCalendario_SelectionChanged(object sender, EventArgs e)
@@ -579,6 +608,11 @@ namespace UTTT.Ejemplo.Persona
         {
            
             
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+
         }
     }
    

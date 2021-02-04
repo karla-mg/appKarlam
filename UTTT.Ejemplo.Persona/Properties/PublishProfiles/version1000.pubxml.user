@@ -8,7 +8,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AjaxControlToolkit.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2020 14:04:00</publishTime>
     </File>
     <File Include="bin/EASendMail.dll">
       <publishTime>01/26/2021 16:58:35</publishTime>
@@ -35,10 +35,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/07/2021 15:52:07</publishTime>
     </File>
     <File Include="bin/UTTT.Ejemplo.Persona.dll">
-      <publishTime>02/02/2021 15:34:30</publishTime>
+      <publishTime>02/03/2021 23:20:56</publishTime>
     </File>
     <File Include="bin/UTTT.Ejemplo.Persona.pdb">
-      <publishTime>02/02/2021 15:34:30</publishTime>
+      <publishTime>02/03/2021 23:20:56</publishTime>
     </File>
     <File Include="controlformato.css">
       <publishTime>04/26/2016 13:33:12</publishTime>
@@ -83,7 +83,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/26/2016 13:33:12</publishTime>
     </File>
     <File Include="PersonaManager.aspx">
-      <publishTime>02/02/2021 15:30:58</publishTime>
+      <publishTime>02/03/2021 23:20:53</publishTime>
     </File>
     <File Include="PersonaPrincipal.aspx">
       <publishTime>01/20/2021 20:02:06</publishTime>
@@ -101,10 +101,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/02/2021 14:45:39</publishTime>
     </File>
     <File Include="validFuctions.js">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>01/21/2021 17:02:00</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/02/2021 15:34:32</publishTime>
+      <publishTime>02/03/2021 23:20:58</publishTime>
     </File>
   </ItemGroup>
 </Project>

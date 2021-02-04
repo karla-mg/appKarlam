@@ -10,7 +10,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode>true</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
-    <NameOfLastUsedPublishProfile>versionFinal</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>version1000</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
