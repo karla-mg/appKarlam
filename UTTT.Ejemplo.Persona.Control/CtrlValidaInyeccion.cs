@@ -9,9 +9,9 @@ namespace UTTT.Ejemplo.Persona.Control
  public  class CtrlValidaInyeccion
     {
         public bool htmlInyectionValida(string _informacion, ref string _mensaje, string _etiquetaReferente,
-            ref System.Web.UI.WebControls.TextBox _control)
+           ref System.Web.UI.WebControls.TextBox _control)
         {
-            Regex tagRegex = new Regex(@"<\s*([^>]+)[^>]*>.*?<\s*/\s*\1\s*>");
+            Regex tagRegex = new Regex(@"<.*?>|&.*?;");
             bool respuesta = tagRegex.IsMatch(_informacion);
             if (respuesta)
             {
@@ -19,8 +19,9 @@ namespace UTTT.Ejemplo.Persona.Control
                 _control.Focus();
             }
             return respuesta;
-        
-    }
+
+        }
+
         public bool sqlInyectionValida(string _informacion , ref string _mensaje, string _etiquetaReferente,
             ref System.Web.UI.WebControls.TextBox _control)
         {
@@ -37,5 +38,6 @@ namespace UTTT.Ejemplo.Persona.Control
             }
             return respuesta;
         }
+       
     }
 }

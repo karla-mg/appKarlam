@@ -10,7 +10,6 @@ C:\SVN\UTTT.Ejemplo.Persona\trunk\UTTT.Ejemplo.Persona.Data\obj\Release\UTTT.Eje
 C:\SVN\UTTT.Ejemplo.Persona\trunk\UTTT.Ejemplo.Persona.Data\obj\Release\UTTT.Ejemplo.Persona.Data.pdb
 C:\Users\Karla\Documents\aaaa\Desarrollo Web\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Data\bin\Release\UTTT.Ejemplo.Persona.Data.dll
 C:\Users\Karla\Documents\aaaa\Desarrollo Web\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Data\bin\Release\UTTT.Ejemplo.Persona.Data.pdb
-C:\Users\Karla\Documents\aaaa\Desarrollo Web\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Data\obj\Release\UTTT.Ejemplo.Persona.Data.csprojAssemblyReference.cache
 C:\Users\Karla\Documents\aaaa\Desarrollo Web\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Data\obj\Release\UTTT.Ejemplo.Persona.Data.csproj.CoreCompileInputs.cache
 C:\Users\Karla\Documents\aaaa\Desarrollo Web\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Data\obj\Release\UTTT.Ejemplo.Persona.Data.dll
 C:\Users\Karla\Documents\aaaa\Desarrollo Web\Manuales\Manual\UTTT.Ejemplo.Persona\UTTT.Ejemplo.Persona.Data\obj\Release\UTTT.Ejemplo.Persona.Data.pdb

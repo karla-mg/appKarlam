@@ -62,6 +62,7 @@ namespace UTTT.Ejemplo.Persona
                     {
                         this.session.Parametros.Add("baseEntity", this.baseEntity);
                     }
+                    //Sexo
                     List<CatSexo> lista = dcGlobal.GetTable<CatSexo>().ToList();
                     CatSexo catTemp = new CatSexo();
                     catTemp.id = -1;
@@ -75,35 +76,51 @@ namespace UTTT.Ejemplo.Persona
 
                     this.ddlSexo.SelectedIndexChanged += new EventHandler(ddlSexo_SelectedIndexChanged);
                     this.ddlSexo.AutoPostBack = true;
+                    //lista Sexo
+
+
+                    //Estado Civil
+               
+                    //lista Edo Civil
+
+
+
+
                     if (this.idPersona == 0)
                     {
                         this.lblAccion.Text = "Agregar";
-                      
-                        //  Calendar1. = DateTime.Now;
-                        DateTime time = new DateTime((DateTime.Now.Year)-21, DateTime.Now.Month, DateTime.Now.Day);
-                        this.Calendar1.TodaysDate = time;
-                        this.Calendar1.SelectedDate = time;
-              
+                         DateTime time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                       
+                         this.Calendar1.SelectedDate = time;
+                        this.Calendar1.EndDate = time;
+                       // TextBox1.Text = DateTime.Today.ToString();
+                        this.TextBox1.Text = Convert.ToString(time);
+
                     }
                     else
                     {
+                       
                         this.lblAccion.Text = "Editar";
                         this.txtNombre.Text = this.baseEntity.strNombre;
                         this.txtAPaterno.Text = this.baseEntity.strAPaterno;
                         this.txtAMaterno.Text = this.baseEntity.strAMaterno;
                         this.txtClaveUnica.Text = this.baseEntity.strClaveUnica;
-                        //this.txtDOB.Text = this.baseEntity.dteFechaNac;
-                       
+                        //this.TextBox1.Text = Convert.ToString(this.baseEntity.dteFechaNac);
+                      
                         DateTime? fechaNacimiento = this.baseEntity.dteFechaNac;
                         if (fechaNacimiento != null)
                         {
-                            this.Calendar1.TodaysDate = (DateTime)fechaNacimiento;
+                            // this.Calendar1.StartDate = Convert.ToDateTime(this.baseEntity.dteFechaNac);
+                            //this.Calendar1.TodaysDate = (DateTime)fechaNacimiento;
+                            //this.Calendar1.SelectedDate = (DateTime)fechaNacimiento;
+                            //TextBox1.Text = fechaNacimiento.ToString();
+                            this.TextBox1.Text = Convert.ToString((DateTime)fechaNacimiento);
                             this.Calendar1.SelectedDate = (DateTime)fechaNacimiento;
                         }
                         this.txtCorreo.Text = this.baseEntity.strCorreo;
                         this.txtCP.Text = this.baseEntity.strCodigoPostal;
-                        this.txtRFC.Text = this.baseEntity.strRFC;
-                        this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
+                        this.txtRFC.Text = this.baseEntity.strRFC;                                       
+                        this.setItem1(ref this.ddlSexo, baseEntity.CatSexo.strValor);
                     }                
                 }
 
@@ -121,21 +138,28 @@ namespace UTTT.Ejemplo.Persona
          
             try
             {
-                
+              
+               
+                DateTime fechaNacimiento = Convert.ToDateTime(TextBox1.Text);
+                DateTime fechaHoy = DateTime.Today;
+                int edad = fechaHoy.Year - fechaNacimiento.Year;
+                if (fechaHoy < fechaNacimiento.AddYears(edad)) edad--;
 
-                DateTime fecNac = this.Calendar1.SelectedDate.Date;
-                    DateTime fechaHoy = DateTime.Today;
-                    int edad = fechaHoy.Year - fecNac.Year;
-                    if (fechaHoy < fecNac.AddYears(edad)) edad--;
+                //Convert.ToDateTime(TextBox1.Text
+                //DateTime fecNac = this.Calendar1.SelectedDate;
+                //DateTime fechaHoy = DateTime.Today;
+                //int edad = fechaHoy.Year - fecNac.Year;
+                //if (fechaHoy < fecNac.AddYears(edad)) edad--;
 
 
-                    if (edad < 18)
-                    {
-                        lblMensaje.Text = "Tú edad no está permitida para registrarte!!";
-                       
+                if (edad < 18)
+                {
+                    this.lblMensaje.Visible = true;
+                    lblMensaje.Text = "Edad no permitida para registrarte";
+                    //this.showMessage("Edad no permitida");
 
-                    }
-                
+                }
+
                 else
                 {
                  
@@ -151,20 +175,19 @@ namespace UTTT.Ejemplo.Persona
                     if (this.idPersona == 0)
                     {
                         
-
                         persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
                         persona.strNombre = this.txtNombre.Text.Trim();
                         persona.strAMaterno = this.txtAMaterno.Text.Trim();
                         persona.strAPaterno = this.txtAPaterno.Text.Trim();
                         persona.idCatSexo = int.Parse(this.ddlSexo.Text);
-
                         persona.strCorreo = this.txtCorreo.Text.Trim();
                         persona.strCodigoPostal = this.txtCP.Text.Trim();
                         persona.strRFC = this.txtRFC.Text.Trim();
-                      //  persona.dteFechaNac = DateTime.Parse(this.txtDOB.Text.Trim());
-                        DateTime fechaNacimiento = this.Calendar1.SelectedDate.Date;
-                        persona.dteFechaNac = fechaNacimiento;
-
+                        
+                        //persona.dteFechaNac = Convert.ToDateTime(this.TextBox1.Text.Trim());
+                        DateTime fechaNacimiento1 = Convert.ToDateTime(TextBox1.Text);
+                        
+                        persona.dteFechaNac = fechaNacimiento1;
 
                         //persona.strClaveUnica = !this.txtClaveUnica.Text.Equals(String.Empty) ?
                         //  this.txtClaveUnica.Text : "Null";
@@ -190,7 +213,6 @@ namespace UTTT.Ejemplo.Persona
                         }
 
 
-
                         dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().InsertOnSubmit(persona);
                         dcGuardar.SubmitChanges();
                         this.showMessage("El registro se agrego correctamente.");
@@ -205,10 +227,14 @@ namespace UTTT.Ejemplo.Persona
                         persona.strAMaterno = this.txtAMaterno.Text.Trim();
                         persona.strAPaterno = this.txtAPaterno.Text.Trim();
                         persona.idCatSexo = int.Parse(this.ddlSexo.Text);
+                        //persona.idCatSexo = int.Parse(this.ddlSexo.Text);
                         persona.strCorreo = this.txtCorreo.Text.Trim();
                         persona.strCodigoPostal = this.txtCP.Text.Trim();
                         persona.strRFC = this.txtRFC.Text.Trim();
-                        persona.dteFechaNac =Convert.ToDateTime(this.Calendar1.SelectedDate.Date);
+                        persona.dteFechaNac =this.Calendar1.SelectedDate;
+                        DateTime fechaNacimiento1 = Convert.ToDateTime(TextBox1.Text);
+                        persona.dteFechaNac = fechaNacimiento1;
+                     
                         String mensaje = String.Empty;
 
                         if (!this.validacion(persona, ref mensaje))
@@ -229,6 +255,7 @@ namespace UTTT.Ejemplo.Persona
                             this.lblMensaje.Visible = true;
                             return;
                         }
+
                         dcGuardar.SubmitChanges();
                         this.showMessage("El registro se edito correctamente.");
                         this.Response.Redirect("~/PersonaPrincipal.aspx", false);
@@ -305,7 +332,24 @@ namespace UTTT.Ejemplo.Persona
             }
             _control.Items.FindByText(_value).Selected = true;
         }
-        public void Correo(string correoDestino, string asunto, string mensajeCorreo)
+        public void setItem1(ref DropDownList _control, String _value)
+        {
+            foreach (ListItem item in _control.Items)
+            {
+                if (item.Value != _value)
+                   item.Enabled = false;
+               
+
+                break;
+
+            
+        }
+            _control.Items.FindByText(_value).Selected = true;
+
+        }
+       
+ 
+    public void Correo(string correoDestino, string asunto, string mensajeCorreo)
         {
             string mensaje = "Error al enviar correo.";
 
@@ -339,22 +383,25 @@ namespace UTTT.Ejemplo.Persona
 
         public bool validacion(UTTT.Ejemplo.Linq.Data.Entity.Persona _persona, ref String _mensaje)
         {
-            //if (_persona.dteFechaNac.Equals(String.Empty))
-            //{
-            //    _mensaje = "Fecha de Nacimiento Vacía";
-            //    return false;
-            //}
+           
             if (_persona.idCatSexo==-1)
             {
                 _mensaje = "Seleccione Campo 'Sexo' ";
                 return false;
             }
-            int i = 0;
-            if (int.TryParse(_persona.strClaveUnica,out i)== false)
+            int n = 0;
+            if (int.TryParse(_persona.strClaveUnica,out n)== false)
             {
                 _mensaje = "La clave no es un numero";
                 return false;
             }
+            //int i = 0;
+            //if (int.TryParse(Convert.ToString(_persona.dteFechaNac), out i) == false)
+            //{
+            //    _mensaje = "La Fecha de Nacimiento no contiene Letras";
+            //    return false;
+            //}
+
             if (int.Parse(_persona.strClaveUnica) < 100 || int.Parse(_persona.strClaveUnica) > 1000)
             {
                 _mensaje = "La clave esta fuera del rango";
@@ -380,14 +427,24 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = "Nombre esta vacío";
                 return false;
             }
+            if (_persona.dteFechaNac.Equals(String.Empty))
+            {
+                _mensaje = "Fecha de Nacimiento esta vacío";
+                return false;
+            }
+            //bool resultadoF = Regex.IsMatch(Convert.ToString(_persona.dteFechaNac), @"/^\d{1,2}-\d{1,2}-\d{2,4}$/");
+            //if (!resultadoF)
+            //{
+            //    _mensaje = " Los caracteres de Fecha de Nacmietno no corresponden a una fecha";
+            //    return false;
+            //}
+
             bool resultado = Regex.IsMatch(_persona.strNombre, @"^[a-zA-Z-ZÀ-ÿ\u00f1\u00d1\s]+$");
             if (!resultado)
             {
                 _mensaje = " Los caracteres del Nombre deben ser letras";
                 return false;
             }
-           
-
 
             if (_persona.strAPaterno.Length > 50)
             {
@@ -482,21 +539,64 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = " Los caracteres del RFC minímo son 13";
                 return false;
             }
-            bool resultadorf = Regex.IsMatch(_persona.strRFC, @"^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$");
+            bool resultadorf = Regex.IsMatch(_persona.strRFC, @"^(([A-Z]|\s){1})(([A-Z]){3})([0-9]{6})((([A-Z]|[0-9]){3}))");
             if (!resultadorf)
             {
                 _mensaje = " Los caracteres del RFC no son correctos";
                 return false;
             }
 
-           
+
 
 
             return true;
         }
-     
+        public bool validacionHTML(ref String _mensaje)
+        {
+            CtrlValidaInyeccion valida = new CtrlValidaInyeccion();
+            string mensajefuncion = string.Empty;
+            if (valida.htmlInyectionValida(this.txtClaveUnica.Text.Trim(), ref mensajefuncion, "Clave Unica", ref this.txtClaveUnica))
+            {
+                _mensaje = mensajefuncion;
+                return false;
+            }
+            if (valida.htmlInyectionValida(this.txtNombre.Text.Trim(), ref mensajefuncion, "Nombre", ref this.txtNombre))
+            {
+                _mensaje = mensajefuncion;
+                return false;
+            }
+            if (valida.htmlInyectionValida(this.txtAPaterno.Text.Trim(), ref mensajefuncion, "A. Paterno", ref this.txtAPaterno))
+            {
+                _mensaje = mensajefuncion;
+                return false;
+            }
+            if (valida.htmlInyectionValida(this.txtAMaterno.Text.Trim(), ref mensajefuncion, "A. Materno", ref this.txtAMaterno))
+            {
+                _mensaje = mensajefuncion;
+                return false;
+            }
+            if (valida.htmlInyectionValida(this.txtCorreo.Text.Trim(), ref mensajefuncion, "E-Mail", ref this.txtCorreo))
+            {
+                _mensaje = mensajefuncion;
+                return false;
+            }
+            if (valida.htmlInyectionValida(this.txtCP.Text.Trim(), ref mensajefuncion, "Código Postal", ref this.txtCP))
+            {
+                _mensaje = mensajefuncion;
+                return false;
+            }
+            if (valida.htmlInyectionValida(this.txtRFC.Text.Trim(), ref mensajefuncion, "RFC", ref this.txtRFC))
+            {
+                _mensaje = mensajefuncion;
+                return false;
+            }
 
-            public bool validacionSQL(ref String _mensaje)
+            return true;
+        }
+
+
+
+        public bool validacionSQL(ref String _mensaje)
         {
             CtrlValidaInyeccion valida = new CtrlValidaInyeccion();
             string mensajefuncion = string.Empty;
@@ -537,64 +637,12 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = mensajefuncion;
                 return false;
             }
-            //if (valida.sqlInyectionValida(this.txtDOB.Text.Trim(), ref mensajefuncion, "Fecha de Nacimiento", ref this.txtDOB))
-            //{
-            //    _mensaje = mensajefuncion;
-            //    return false;
-            //}
+         
 
             return true;
         }
         
-        public bool validacionHTML (ref String _mensaje)
-        {
-            CtrlValidaInyeccion valida = new CtrlValidaInyeccion();
-            string mensajefuncion = string.Empty;
-            if (valida.htmlInyectionValida(this.txtClaveUnica.Text.Trim(), ref mensajefuncion, "Clave Unica", ref this.txtClaveUnica))
-            {
-                _mensaje = mensajefuncion;
-                return false;
-            }
-            if (valida.htmlInyectionValida(this.txtNombre.Text.Trim(), ref mensajefuncion, "Nombre", ref this.txtNombre))
-            {
-                _mensaje = mensajefuncion;
-                return false;
-            }
-            if (valida.htmlInyectionValida(this.txtAPaterno.Text.Trim(), ref mensajefuncion, "A. Paterno", ref this.txtAPaterno))
-            {
-                _mensaje = mensajefuncion;
-                return false;
-            }
-            if (valida.htmlInyectionValida(this.txtAMaterno.Text.Trim(), ref mensajefuncion, "A. Materno", ref this.txtAMaterno))
-            {
-                _mensaje = mensajefuncion;
-                return false;
-            }
-            if (valida.htmlInyectionValida(this.txtCorreo.Text.Trim(), ref mensajefuncion, "E-Mail", ref this.txtCorreo))
-            {
-                _mensaje = mensajefuncion;
-                return false;
-            }
-            if (valida.htmlInyectionValida(this.txtCP.Text.Trim(), ref mensajefuncion, "Código Postal", ref this.txtCP))
-            {
-                _mensaje = mensajefuncion;
-                return false;
-            }
-            if (valida.htmlInyectionValida(this.txtRFC.Text.Trim(), ref mensajefuncion, "RFC", ref this.txtRFC))
-            {
-                _mensaje = mensajefuncion;
-                return false;
-            }
-            //if (valida.htmlInyectionValida(this.txtDOB.Text.Trim(), ref mensajefuncion, "Fecha de Nacimiento", ref this.txtDOB))
-            //{
-            //    _mensaje = mensajefuncion;
-            //    return false;
-            //}
-          
-
-
-            return true;
-        }
+   
        
 
         #endregion

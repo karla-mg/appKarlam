@@ -8,7 +8,18 @@
 <head runat="server">
 
     <script src="Scripts/validaciones.js " type="text/javascript"></script>
+    <script type="text/javascript">
+        function validarFormatoFecha(campo) {
+            var RegExPattern = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/;
+            if ((campo.match(RegExPattern)) && (campo != '')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
+
+    </script>
 
     <script type="text/javascript">
 
@@ -16,12 +27,8 @@
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))
                 return true;
-
-
             return false;
         }
-
-
     </script>
     <script type="text/javascript">
         function justNumbers(e) {
@@ -33,157 +40,194 @@
 
         }
     </script>
-
+    <script type="text/javascript">
+        window.onload = function () {
+            var pos = window.name || 0;
+            window.scrollTo(0, pos);
+        }
+        window.onunload = function () {
+            window.name = self.pageYOffset || (document.documentElement.location.assign() + document.location.assign());
+        }
+    </script>
     <title></title>
+    <%--<link href="StyleSheet1.css" rel="stylesheet" />--%>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"/>
 </head>
 <body>
-    <form id="form1" runat="server" onsubmit="return camposValid()" style="background-color: #CCCCFF">
-        <div style="border-style: double; font-family: century; font-size: xx-large; font-weight: bold">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Persona
-        </div>
-        <div style="font-family: 'Century Gothic'; font-weight: bold">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <asp:Label ID="lblAccion" runat="server" Text="Accion" Font-Bold="True" Font-Size="X-Large"></asp:Label>
+    <div class="container" style="font-family: 'Century Gothic'; ">
+     
+    <form id="form1" runat="server" class="well form-horizontal"  onsubmit="return camposValid()">
+     <fieldset>
 
-            <br />
-
+        
+           <legend><center><h2><b>Persona</b></h2></center></legend><br>
+       
+        
+        <div  style="font-family: 'Century Gothic'; " align="center">
+        <asp:Label ID="lblAccion" runat="server" Text="Accion" CssClass="control-label " for="accion"  Font-Size="X-Large"></asp:Label>
         </div>
-        <div style="background-color: #CCCCFF">
-        </div>
-        <div>
+        <br />
 
-            <div style="font-family: 'Century Gothic'; font-weight: bold" align="left">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sexo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <asp:DropDownList ID="ddlSexo" runat="server"
-                Height="25px" Width="253px"
-                OnSelectedIndexChanged="ddlSexo_SelectedIndexChanged" BackColor="#FFCC99" Font-Bold="True">
-            </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvSexo" runat="server" ControlToValidate="ddlSexo" EnableClientScript="False" ErrorMessage="Selecciona un valor*" InitialValue="-1"></asp:RequiredFieldValidator>
-                <br />
+        <div class="form-group"  style="font-family: 'Century Gothic'; "   >
+        <asp:Label runat="server" Text="Sexo:" Class="control-label col-sm-4" for="sexo"></asp:Label>
+        <div class="col-md-4 inputGroupContainer">
+         <div class="input-group">
+         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <asp:DropDownList ID="ddlSexo" runat="server" Class="form-control border border-secondary"  OnSelectedIndexChanged="ddlSexo_SelectedIndexChanged" >
+        </asp:DropDownList>
+             </div>
+        <asp:RequiredFieldValidator  ID="rfvSexo" runat="server" ControlToValidate="ddlSexo" EnableClientScript="False" ErrorMessage="Selecciona un valor*" InitialValue="-1"></asp:RequiredFieldValidator>       
+            
             </div>
-
-        </div>
-        <div style="font-family: 'Century Gothic'; font-weight: bold;" align="left">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-            &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Clave Unica:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <asp:TextBox ID="txtClaveUnica" onkeypress="return justNumbers(event);" runat="server"
-                Width="249px" ViewStateMode="Disabled" minlength="3" MaxLength="3" BackColor="#FFCC99" Font-Bold="True"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="rfvClave" runat="server" ControlToValidate="txtClaveUnica" EnableClientScript="False" ErrorMessage="Clave Obligatoria*"></asp:RequiredFieldValidator>
-            <%--<asp:Label id="result1" runat="server" Font-Bold="True" Font-Italic="False" ForeColor="#6666FF"></asp:Label>--%>
-        </div>
-        <div style="font-family: 'Century Gothic'; font-weight: bold;" align="left">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Nombre:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:TextBox
-                ID="txtNombre" minlength="3" MaxLength="50" onkeypress="return soloLetras(event);" runat="server" Width="249px" ViewStateMode="Disabled" BackColor="#FFCC99" ForeColor="Black" Font-Bold="True"></asp:TextBox>
-
-            <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" EnableClientScript="False" ErrorMessage="Nombre Obligatorio*"></asp:RequiredFieldValidator>
-
-            <%--<asp:Label id="result3" runat="server" Font-Bold="True" ForeColor="#6666FF"></asp:Label>--%>
-            <br />
-            <br />
-        </div>
-        <div style="font-family: 'Century Gothic'; font-weight: bold" align="left">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Apellido Paterno:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<asp:TextBox
-                ID="txtAPaterno" minlength="3" MaxLength="50" onkeypress="return soloLetras(event);" runat="server" Width="249px" ViewStateMode="Disabled" BackColor="#FFCC99" Font-Bold="True"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="rfvAPaterno" runat="server" ControlToValidate="txtAPaterno" EnableClientScript="False" ErrorMessage="Apellido Paterno Obligatorio*"></asp:RequiredFieldValidator>
-            <%--<asp:Label id="result4" runat="server" Font-Bold="True" ForeColor="#6666FF"></asp:Label>--%>
-            <br />
-            <br />
-        </div>
-        <div style="font-family: 'Century Gothic'; font-weight: bold" align="left">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apellido&nbsp; Materno:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:TextBox ID="txtAMaterno" minlength="3" MaxLength="50" onkeypress="return soloLetras(event);" runat="server" Width="248px"
-                ViewStateMode="Disabled" BackColor="#FFCC99" Font-Bold="True"></asp:TextBox>
-
-            <asp:RequiredFieldValidator ID="rfvAMaterno" runat="server" ControlToValidate="txtAMaterno" EnableClientScript="False" ErrorMessage="Apellido  Materno Obligatorio*"></asp:RequiredFieldValidator>
-
-            <%--<asp:Label id="result5" runat="server" Font-Bold="True" ForeColor="#6666FF"></asp:Label>--%>
-        </div>
-        <div style="background-color: #CCCCFF">
-            &nbsp;<div style="font-family: 'Century Gothic'; font-weight: bold" align="left">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label2" runat="server" Text="E-Mail:"></asp:Label>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-            <asp:TextBox ID="txtCorreo" runat="server" MaxLength="50" TextMode="Email" Width="247px" BackColor="#FFCC99" Font-Bold="True"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtCorreo" EnableClientScript="False" ErrorMessage="Correo Inválido!*" ValidationExpression="^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"></asp:RegularExpressionValidator>
-                <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ControlToValidate="txtCorreo" EnableClientScript="False" ErrorMessage="E-Mail Obligatorio*"></asp:RequiredFieldValidator>
-                <%--<asp:Label id="result6" runat="server" Font-Bold="True" ForeColor="#6666FF"></asp:Label>--%>
-
-
-                <br />
-
-
-                <br />
-                <div align="left">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Label ID="Label3" runat="server" Text="Código Postal:"></asp:Label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                <asp:TextBox ID="txtCP" onkeypress="return justNumbers(event);" runat="server" MaxLength="5" minlength="5" BackColor="#FFCC99" Font-Bold="True"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvCP" onkeypress="return justNumbers(event);" runat="server" ControlToValidate="txtCP" EnableClientScript="False" ErrorMessage="Código Postal Obligatorio*"></asp:RequiredFieldValidator>
-                    <%--<asp:Label id="result7" runat="server" Font-Bold="True" ForeColor="#6666FF"></asp:Label>--%>
-                    <br />
-                    <br />
-                </div>
-                <div align="left">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Label ID="Label4" runat="server" Text="RFC:"></asp:Label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-                <asp:TextBox ID="txtRFC" runat="server" MaxLength="14" minlength="13" BackColor="#FFCC99" Font-Bold="True"></asp:TextBox>
-                    <%--<asp:Label ID="result8" runat="server" Font-Bold="True" ForeColor="#6666FF"></asp:Label>--%>
-                    <asp:RequiredFieldValidator ID="rfvRFC" onkeypress="return justNumbers(event);" runat="server" ControlToValidate="txtRFC" EnableClientScript="False" ErrorMessage="RFC  Obligatorio*"></asp:RequiredFieldValidator>
-                </div>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="font-family: 'Century Gothic'; font-weight: bold">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label1" runat="server" Text="Fecha de Nacimiento:"></asp:Label>
-                &nbsp;</div>
-           
+        
+
+       
+
+        <div class="form-group"  style ="font-family: 'Century Gothic'; ">
+        <asp:Label runat="server" Text="Clave Única:" CssClass="control-label col-sm-4 " for="txtClaveUnica"></asp:Label> 
+            <div class="col-md-4 inputGroupContainer">
+         <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <asp:TextBox Class="form-control border border-secondary "  ID="txtClaveUnica" onkeypress="return justNumbers(event);" runat="server" ViewStateMode="Disabled" minlength="3" MaxLength="3"   ></asp:TextBox>
+             </div>
+        <asp:RequiredFieldValidator ID="rfvClave" runat="server" ControlToValidate="txtClaveUnica" EnableClientScript="False" ErrorMessage="Clave Obligatoria*"></asp:RequiredFieldValidator>
+        </div>
+           </div>
+           <div class="form-group" style="font-family: 'Century Gothic'; " >
+           <asp:Label  runat="server" Text="Nombre:" CssClass="control-label col-sm-4" for="nombre"></asp:Label>
+                 <div class="col-md-4 inputGroupContainer">
+         <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+           <asp:TextBox Class="form-control border border-secondary  " ID="txtNombre" minlength="4" MaxLength="50" onkeypress="return soloLetras(event);" runat="server"  ViewStateMode="Disabled"   ></asp:TextBox>
+             </div>
+           <asp:RequiredFieldValidator  ID="rfvNombre" runat="server" ControlToValidate="txtNombre" EnableClientScript="False" ErrorMessage="Nombre Obligatorio*"></asp:RequiredFieldValidator>         
+           </div>
+         </div>
+
+          
+          <div class="form-group"  style="font-family: 'Century Gothic'; " >
+          <asp:Label runat="server" Text="Apellido Paterno:" CssClass="control-label col-sm-4" for="APaterno"></asp:Label>
+                <div class="col-md-4 inputGroupContainer">
+         <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <asp:TextBox Class="form-control border border-secondary " ID="txtAPaterno" minlength="3" MaxLength="50" onkeypress="return soloLetras(event);" runat="server" ViewStateMode="Disabled" ></asp:TextBox>
+             </div>
+          <asp:RequiredFieldValidator ID="rfvAPaterno" runat="server" ControlToValidate="txtAPaterno" EnableClientScript="False" ErrorMessage="Apellido Paterno Obligatorio*"></asp:RequiredFieldValidator>        
+          </div>
+        </div>
+        
+           <div class="form-group" style="font-family: 'Century Gothic'; " align="left">
+           <asp:Label runat="server" Text="Apellido Materno:" CssClass="control-label col-sm-4" for="AMaterno"></asp:Label>
+                <div class="col-md-4 inputGroupContainer">
+         <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+           <asp:TextBox Class="form-control border border-secondary " ID="txtAMaterno" minlength="3" MaxLength="50" onkeypress="return soloLetras(event);" runat="server" ViewStateMode="Disabled"  ></asp:TextBox>
+             </div>
+           <asp:RequiredFieldValidator ID="rfvAMaterno" runat="server" ControlToValidate="txtAMaterno" EnableClientScript="False" ErrorMessage="Apellido  Materno Obligatorio*"></asp:RequiredFieldValidator>
+            </div>
+               </div>
            
 
+        <div class="form-group"  style="font-family: 'Century Gothic'; " align="left">        
+          <asp:Label runat="server" Text="Fecha de Nacimiento:" CssClass="control-label col-sm-4"  for="FechaNac"></asp:Label>
+              <div class="col-md-4 inputGroupContainer">
+         <div class="input-group"> 
+             <span class="input-group-addon" ><i > <asp:ImageButton ID="btnCa"   runat="server" Height="20px"  Width="20px" ImageUrl="~/Images/calendar.png" ></asp:ImageButton></i></span>
 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--<div align="center" style="background-color: #C0C0C0">
-        <asp:Calendar ID="dteCalendario"   runat="server" BackColor="White" BorderColor="Black" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="192px" Width="248px" CaptionAlign="Top" NextPrevFormat="ShortMonth" BorderStyle="Solid" CellSpacing="1" OnSelectionChanged="dteCalendario_SelectionChanged">
-            <DayHeaderStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" Height="8pt" />
-            <DayStyle BackColor="#CCCCCC" />
-            <NextPrevStyle Font-Size="8pt" ForeColor="White" Font-Bold="True" />
-            <OtherMonthDayStyle ForeColor="#999999" />
-            <SelectedDayStyle BackColor="#FF5050" ForeColor="White" />
-            <TitleStyle BackColor="#99CCFF" Font-Bold="True" Font-Size="12pt" ForeColor="Black" Height="12pt" BorderStyle="Solid" />
-            <TodayDayStyle BackColor="#999999" ForeColor="White" />
-        </asp:Calendar>
-                    </div>--%>
-        
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div align="center">
-                <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" CellSpacing="1" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="115px" NextPrevFormat="ShortMonth" OnSelectionChanged="Calendar1_SelectionChanged" Width="164px">
-                    <DayHeaderStyle BackColor="#FFFF99" Font-Bold="True" Font-Size="8pt" ForeColor="#333333" Height="8pt" />
-                    <DayStyle BackColor="#CCCCCC" />
-                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="White" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <SelectorStyle BackColor="#FFCC00" />
-                    <TitleStyle BackColor="#FFCC99" BorderStyle="Solid" Font-Bold="True" Font-Size="12pt" ForeColor="Black" Height="12pt" />
-                    <TodayDayStyle BackColor="#999999" ForeColor="White" />
-                </asp:Calendar>
+          <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+          <asp:TextBox ID="TextBox1" runat="server" onkeypress="return justNumbers(event);" CssClass="form-control border border-secondary"></asp:TextBox>
+             
+              </div>
+             <asp:RequiredFieldValidator ID="rfvFechaNaci" runat="server" ControlToValidate="TextBox1" ErrorMessage="Fecha de Nacimiento Obligatoria*"></asp:RequiredFieldValidator>
+             <%--<asp:RegularExpressionValidator ID="revFecha" runat="server" ControlToValidate="TextBox1" ErrorMessage="Fecha Inválida*" ValidationExpression="^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})(\s)([0-1][0-9]|2[0-3])(:)([0-5][0-9])$"></asp:RegularExpressionValidator>--%>
+             
+          <ajaxToolkit:CalendarExtender   ID="Calendar1" runat="server" Format="dd-MM-yyyy" PopupPosition="BottomRight"  BehaviorID="Calendar1" PopupButtonID="btnCa" TargetControlID="TextBox1" ></ajaxToolkit:CalendarExtender>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 822px; height: 82px;" align="center">
-                &nbsp;&nbsp;&nbsp;<asp:Label ID="lblMensaje" runat="server"  Font-Bold="True" Font-Size="Large" ForeColor="Red" Font-Overline="False"></asp:Label>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="background-color: #CCCCFF">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
-                <div>
-     
-        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar"
-            OnClick="btnAceptar_Click"
-        
-            ViewStateMode="Disabled" BackColor="#FFCC99" Font-Bold="True" Height="33px" Width="126px" />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar"
-            OnClick="btnCancelar_Click" ViewStateMode="Disabled" BackColor="#FFCC99" Font-Bold="True" Height="33px" Width="127px" />
 
-                </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-                &nbsp;
-     
-            &nbsp;&nbsp;&nbsp;
-        
-        </div>
+          </div>
 
+
+
+            <div class="form-group" style="font-family: 'Century Gothic'; " align="left" >
+            <asp:Label runat="server" Text="Email:" CssClass="control-label col-sm-4" for="email"></asp:Label>
+                <div class="col-md-4 inputGroupContainer">
+         <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <asp:TextBox CssClass="form-control border border-secondary" ID="txtCorreo" runat="server" MaxLength="50" TextMode="Email" ></asp:TextBox>
+             </div>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtCorreo" EnableClientScript="False" ErrorMessage="Correo Inválido!*" ValidationExpression="^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"></asp:RegularExpressionValidator>
+            <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ControlToValidate="txtCorreo" EnableClientScript="False" ErrorMessage="E-Mail Obligatorio*"></asp:RequiredFieldValidator>
+            </div>
         </div>
+  
+            <div class="form-group"  style="font-family: 'Century Gothic'; " align="left">
+            <asp:Label runat="server" Text="Código Postal:" CssClass="control-label col-sm-4" for="cp"></asp:Label>
+                   <div class="col-md-4 inputGroupContainer">
+         <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <asp:TextBox CssClass="form-control border border-secondary " ID="txtCP" onkeypress="return justNumbers(event);" runat="server" MaxLength="5" minlength="5" ></asp:TextBox>
+             </div>
+            <asp:RequiredFieldValidator ID="rfvCP" onkeypress="return justNumbers(event);" runat="server" ControlToValidate="txtCP" EnableClientScript="False" ErrorMessage="Código Postal Obligatorio*"></asp:RequiredFieldValidator>                
+            </div>
+                </div>
+           
+
+             <div class="form-group"  style="font-family: 'Century Gothic'; " align="left">
+             <asp:Label runat="server" Text="RFC:" CssClass="control-label col-sm-4" for="rfc"></asp:Label>       
+                    <div class="col-md-4 inputGroupContainer">
+         <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+             <asp:TextBox CssClass="form-control border border-secondary " ID="txtRFC" runat="server"  ></asp:TextBox>
+             </div>
+             <asp:RequiredFieldValidator ID="rfvRFC"  runat="server" ControlToValidate="txtRFC" EnableClientScript="False" ErrorMessage="RFC  Obligatorio*"></asp:RequiredFieldValidator>
+             <asp:RegularExpressionValidator ID="revRFCi" runat="server" ControlToValidate="txtRFC" ErrorMessage="RFC inválido!" ValidationExpression="(([A-Z]|\s){1})(([A-Z]){3})([0-9]{6})((([A-Z]|[0-9]){3}))" EnableClientScript="False"></asp:RegularExpressionValidator>
+             </div>
+                 </div>
+
+                     <div class="form-group"  style="font-family: 'Century Gothic'; " align="left">
+                   <asp:Label runat="server" Text="Estado Civil:" CssClass="control-label col-sm-4" for="edoCivil"></asp:Label>       
+                   <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+             <asp:DropDownList ID="ddlEstadoCivil" runat="server" Class="form-control border border-secondary"  OnSelectedIndexChanged="ddlEstadoCivil_SelectedIndexChanged" >
+        </asp:DropDownList>
+             </div>
+          <asp:RequiredFieldValidator ID="rvEstadoCivil"  runat="server" ControlToValidate="edoCivil" EnableClientScript="False" ErrorMessage="Estado Civil Obligatorio*"></asp:RequiredFieldValidator>
+
+                    </div>
+                     </div>
+
+
+
+    
+
+        <div class="form-group" style="font-family: 'Century Gothic';  ">
+         <div  style="font-family: 'Century Gothic'; font-weight: bold" align="center">     
+         <asp:Label Visible="false" CssClass="alert alert-danger" ID="lblMensaje" runat="server"  
+             Font-Size="Large" ForeColor="Red"     Width="500px"></asp:Label>
+         </div>
+        </div> 
+           <%--<asp:TextBox CssClass="form-control border border-secondary "   runat="server" Width="500px"></asp:TextBox>--%>          <%--<div align="center">  --%>          <%--<asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged">
+          </asp:Calendar>--%>          <%--</div>--%>    
+      
+      
+          <div  style="font-family: 'Century Gothic'; font-weight: bold" align="right">     
+          <div class="col-sm-10">
+          <asp:Button CssClass="btn btn-success" ID="btnAceptar" runat="server" Text="Guardar"
+              OnClick="btnAceptar_Click" ViewStateMode="Disabled"   Height="46px" Width="123px" >          </asp:Button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button CssClass="btn btn-warning" ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" ViewStateMode="Disabled"   Height="46px" Width="123px"/>
+               <br />
+           <br />
+          </div>
+          </div>
+        
+        
+              </fieldset>
+       
     </form>
+         
+         </div>
 </body>
 </html>
